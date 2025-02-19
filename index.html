@@ -13,16 +13,336 @@
 </head>
 
 <body>
-    <section
+    <section id="home"
         class="bg-gradient-to-br from-blue-900 via-blue-800 to-purple-800 min-h-screen py-8 px-4 relative overflow-hidden">
         <!-- Top Navigation Bar -->
         <div class="fixed min-h-[32px] top-0 left-0 right-0 bg-white z-50 shadow-sm">
-            <div class="mx-[6%] hidden lg:flex justify-end items-center py-2  space-x-6 text-sm">
-                <a href="#" class="text-gray-600 hover:text-green-500 transition-colors">Login</a>
+            <div class="mx-[6%] hidden lg:flex justify-end items-center py-2 space-x-6 text-sm">
+                <a href="#" class="text-gray-600 hover:text-green-500 transition-colors"
+                    onclick="showForm('login')">Login</a>
                 <span class="text-gray-300">|</span>
-                <a href="#" class="text-gray-600 hover:text-green-500 transition-colors">Register</a>
+                <a href="#" class="text-gray-600 hover:text-green-500 transition-colors"
+                    onclick="showForm('register')">Register</a>
                 <span class="text-gray-300">|</span>
                 <a href="#" class="text-gray-600 hover:text-green-500 transition-colors">العربية</a>
+            </div>
+        </div>
+
+        <!-- Registration Wizard Form (Hidden by Default) -->
+        <div id="register-form-container"
+            class="fixed top-0 left-0 right-0 bg-[#1E3DA0] h-[100vh] opacity-95 z-[60] shadow-lg transform -translate-y-full transition-transform duration-500">
+            <div class="relative max-w-md mx-auto pt-[10%]">
+                <!-- Close Button -->
+                <button onclick="hideForm('register')"
+                    class="absolute top-[100px] right-[-250px] text-white text-[2rem] ">
+                    <i class="fa-solid fa-times"></i>
+                </button>
+
+                <!-- Wizard Steps -->
+                <div id="step-1" class="step">
+                    <h2 class="text-2xl text-white font-bold mb-6">Subscribe</h2>
+                    <form>
+                        <div class="mb-4">
+                            <label for="firstName" class="block text-sm font-medium text-white">Basic
+                                Information</label>
+                            <div class="flex items-center gap-2">
+                                <input type="text" id="firstName"
+                                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
+                                    placeholder="Add First Name">
+                                <i class="fa-solid fa-asterisk text-[#F2FF00]"></i>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <div class="flex items-center gap-2">
+                                <input type="text" id="middelName"
+                                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
+                                    placeholder="Add Middle Name">
+                                <i class="fa-solid fa-asterisk text-[#F2FF00]"></i>
+                            </div>
+
+                        </div>
+                        <div class="mb-4">
+                            <div class="flex items-center gap-2">
+                                <input type="text" id="lastName"
+                                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
+                                    placeholder="Add last Name">
+                                <i class="fa-solid fa-asterisk text-[#F2FF00]"></i>
+
+                            </div>
+
+                        </div>
+                        <div class="mb-4">
+                            <div class="flex items-center gap-2">
+                                <input type="date" id="date"
+                                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
+                                    placeholder="Add Middle Name">
+                                <i class="fa-solid fa-asterisk text-[#F2FF00]"></i>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <div class="flex items-center gap-2">
+                                <select id="gender"
+                                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
+                                    placeholder="Gender" name="gender" id="gender">
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                </select>
+                                <i class="fa-solid fa-asterisk text-[#F2FF00]"></i>
+
+                            </div>
+                        </div>
+                        <div class="flex justify-end pe-6">
+                            <button type="button" onclick="nextStep(2)"
+                                class=" bg-[#F2FF00] text-black py-1 px-8 text-right">Next
+                                Step</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="step-2" class="step hidden">
+                    <h2 class="text-2xl text-white font-bold mb-6">Subscribe</h2>
+                    <form>
+                        <div class="mb-4">
+                            <label for="firstName" class="block text-sm font-medium text-white">Contact
+                                Information</label>
+                            <div class="flex items-center gap-2">
+                                <input type="phone" id="PhoneNumber"
+                                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
+                                    placeholder="Phone Number">
+                                <i class="fa-solid fa-asterisk text-[#F2FF00]"></i>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <div class="flex items-center gap-2">
+                                <input type="email" id="email"
+                                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
+                                    placeholder="Email">
+                                <i class="fa-solid fa-asterisk text-[#F2FF00]"></i>
+                            </div>
+
+                        </div>
+                        <div class="mb-4">
+                            <div class="flex items-center gap-2">
+                                <input type="text" id="emergencyPhoneNumber"
+                                    class="mt-1 me-5 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
+                                    placeholder="Emergency Phone Number ">
+
+                            </div>
+
+                        </div>
+                        <div class="flex justify-between gap-4 pe-6">
+                            <button type="button" onclick="prevStep(1)"
+                                class="text-center bg-transparent text-white border border-white py-1 flex-1 ">Back</button>
+                            <button type="button" onclick="nextStep(3)"
+                                class=" text-center bg-[#F2FF00] text-black py-1 flex-1">Next
+                                Step</button>
+
+                        </div>
+                    </form>
+                </div>
+                <div id="step-3" class="step hidden">
+                    <h2 class="text-2xl text-white font-bold mb-6">Subscribe</h2>
+                    <form>
+                        <div class="mb-4">
+                            <label for="firstName" class="block text-sm font-medium text-white">Nationality & Address
+                            </label>
+                            <div class="flex items-center gap-2">
+                                <select id="country"
+                                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">
+                                    <option value="">Select Country</option>
+                                    <option value="Egypt">Egypt</option>
+                                    <option value="Saudi Arabia">Saudi Arabia</option>
+                                    <option value="UAE">UAE</option>
+                                    <option value="Kuwait">Kuwait</option>
+                                    <option value="Bahrain">Bahrain</option>
+                                    <option value="Qatar">Qatar</option>
+                                    <option value="Oman">Oman</option>
+                                    <option value="Jordan">Jordan</option>
+                                    <option value="Lebanon">Lebanon</option>
+                                    <option value="Palestine">Palestine</option>
+                                    <option value="Iraq">Iraq</option>
+                                    <option value="Syria">Syria</option>
+                                    <option value="Yemen">Yemen</option>
+                                    <option value="Morocco">Morocco</option>
+                                    <option value="Algeria">Algeria</option>
+                                    <option value="Tunisia">Tunisia</option>
+                                    <option value="Libya">Libya</option>
+                                    <option value="Sudan">Sudan</option>
+                                </select>
+
+
+                                </select>
+                                <i class="fa-solid fa-asterisk text-[#F2FF00]"></i>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <div class="flex items-center gap-2">
+
+                                <select id="nationality"
+                                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">
+                                    <option value="">Select Nationality</option>
+                                    <option value="Egyptian">Egyptian</option>
+                                    <option value="Saudi">Saudi</option>
+                                    <option value="UAE">UAE</option>
+                                    <option value="Kuwaiti">Kuwaiti</option>
+                                    <option value="Bahraini">Bahraini</option>
+                                    <option value="Qatari">Qatari</option>
+                                    <option value="Omani">Omani</option>
+                                    <option value="Jordanian">Jordanian</option>
+                                    <option value="Lebanese">Lebanese</option>
+                                    <option value="Palestinian">Palestinian</option>
+                                    <option value="Iraqi">Iraqi</option>
+                                    <option value="Syrian">Syrian</option>
+                                    <option value="Yemeni">Yemeni</option>
+                                    <option value="Moroccan">Moroccan</option>
+                                    <option value="Algerian">Algerian</option>
+                                    <option value="Tunisian">Tunisian</option>
+                                    <option value="Libyan">Libyan</option>
+                                    <option value="Sudanese">Sudanese</option>
+                                </select>
+                                <i class="fa-solid fa-asterisk text-[#F2FF00]"></i>
+                            </div>
+
+                        </div>
+                        <div class="mb-4">
+                            <div class="flex items-center gap-2">
+                                <input type="text" id="address"
+                                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
+                                    placeholder="Add your Address ">
+                                <i class="fa-solid fa-asterisk text-[#F2FF00]"></i>
+
+                            </div>
+
+                        </div>
+                        <div class="flex justify-between gap-4 pe-6">
+                            <button type="button" onclick="prevStep(2)"
+                                class="text-center bg-transparent text-white border border-white py-1 flex-1 ">Back</button>
+                            <button type="button" onclick="nextStep(4)"
+                                class=" text-center bg-[#F2FF00] text-black py-1 flex-1">Next
+                                Step</button>
+
+                        </div>
+                    </form>
+                </div>
+                <div id="step-4" class="step hidden">
+                    <h2 class="text-2xl text-white font-bold mb-6">Subscribe</h2>
+                    <form>
+                        <div class="mb-4 w-full">
+                            <label for="photo" class="block text-sm font-medium text-white">Photo
+                            </label>
+                            <div class="flex items-center  gap-2 w-full">
+                                <div class="flex items-center flex-1">
+                                    <label for="photo"
+                                        class="flex flex-col items-center justify-center w-full h-[300px] gap-2 cursor-pointer bg-white  px-4 py-12 rounded-md border border-gray-300 hover:bg-gray-50">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="76" height="76"
+                                            viewBox="0 0 76 76" fill="none">
+                                            <path
+                                                d="M7.125 11.875H11.875V14.25C10.4025 14.25 8.57138 14.25 7.125 14.25V11.875Z"
+                                                fill="#F76D57" />
+                                            <path
+                                                d="M71.25 16.625C71.25 16.625 61.75 16.625 60.5625 16.625C59.375 16.625 58.2338 15.9755 57.3479 15.0896C56.4621 14.2037 51.1694 8.91101 50.2692 8.01089C49.3691 7.11076 48.0938 7.12501 48.0938 7.12501H27.9062C27.9062 7.12501 26.5941 7.14876 25.7581 7.98358C24.9221 8.81839 19.4584 14.2833 18.6521 15.0896C17.8457 15.8959 16.625 16.625 15.4375 16.625C14.25 16.625 4.75 16.625 4.75 16.625C3.439 16.625 2.375 17.689 2.375 19V33.25H18.8729C22.3725 26.2176 29.6127 21.375 38 21.375C46.3873 21.375 53.6275 26.2176 57.1271 33.25H73.625V19C73.625 17.689 72.561 16.625 71.25 16.625Z"
+                                                fill="#36DAFB" />
+                                            <path
+                                                d="M59.375 42.75C59.375 54.5549 49.8049 64.125 38 64.125C26.1951 64.125 16.625 54.5549 16.625 42.75C16.625 40.2479 17.0774 37.8563 17.8671 35.625H2.375V66.5C2.375 67.811 3.439 68.875 4.75 68.875H71.25C72.561 68.875 73.625 67.811 73.625 66.5V35.625H58.1329C58.9226 37.8563 59.375 40.2479 59.375 42.75Z"
+                                                fill="#36DAFB" />
+                                            <path
+                                                d="M38 57C45.8701 57 52.25 50.6201 52.25 42.75C52.25 34.8799 45.8701 28.5 38 28.5C30.1299 28.5 23.75 34.8799 23.75 42.75C23.75 50.6201 30.1299 57 38 57Z"
+                                                fill="#F2FF00" />
+                                            <path
+                                                d="M38 59.375C47.1817 59.375 54.625 51.9317 54.625 42.75C54.625 33.5683 47.1817 26.125 38 26.125C28.8183 26.125 21.375 33.5683 21.375 42.75C21.375 51.9317 28.8183 59.375 38 59.375ZM38 28.5C45.8696 28.5 52.25 34.8804 52.25 42.75C52.25 50.6196 45.8696 57 38 57C30.1304 57 23.75 50.6196 23.75 42.75C23.75 34.8804 30.1304 28.5 38 28.5Z"
+                                                fill="#6B7780" />
+                                            <path
+                                                d="M71.25 14.25C71.25 14.25 62.9375 14.25 61.75 14.25C60.5625 14.25 59.8714 14.2548 58.4333 12.8167C56.9953 11.3786 51.8569 6.24031 51.8569 6.24031C51.6337 6.01706 50.2669 4.75 48.6875 4.75C47.1081 4.75 29.0379 4.75 27.3125 4.75C25.5871 4.75 24.3461 6.03725 24.1229 6.25931C24.1229 6.25931 18.9858 11.3964 17.5667 12.8155C16.1476 14.2346 15.4589 14.25 14.25 14.25V10.6875C14.25 10.0308 13.7192 9.5 13.0625 9.5H5.9375C5.28081 9.5 4.75 10.0308 4.75 10.6875V14.25C2.12444 14.25 0 16.3744 0 19V66.5C0 69.1256 2.12444 71.25 4.75 71.25H71.25C73.8756 71.25 76 69.1256 76 66.5V19C76 16.3744 73.8756 14.25 71.25 14.25ZM7.125 11.875H11.875V14.25C10.4025 14.25 8.57137 14.25 7.125 14.25V11.875ZM4.75 16.625C4.75 16.625 14.25 16.625 15.4375 16.625C16.625 16.625 17.8446 15.8971 18.6521 15.0896C19.4596 14.2821 24.9233 8.81838 25.7581 7.98356C26.5929 7.14875 27.9062 7.125 27.9062 7.125H48.0938C48.0938 7.125 49.3691 7.11075 50.2692 8.01087C51.1694 8.911 56.4621 14.2037 57.3479 15.0896C58.2338 15.9754 59.375 16.625 60.5625 16.625C61.75 16.625 71.25 16.625 71.25 16.625C72.561 16.625 73.625 17.689 73.625 19V33.25H57.1271C53.6275 26.2176 46.3873 21.375 38 21.375C29.6127 21.375 22.3725 26.2176 18.8729 33.25H2.375V19C2.375 17.689 3.439 16.625 4.75 16.625ZM38 23.75C48.4939 23.75 57 32.2561 57 42.75C57 53.2451 48.4939 61.75 38 61.75C27.5061 61.75 19 53.2451 19 42.75C19 32.2561 27.5061 23.75 38 23.75ZM71.25 68.875H4.75C3.439 68.875 2.375 67.811 2.375 66.5V35.625H17.8671C17.0774 37.8563 16.625 40.2479 16.625 42.75C16.625 54.5549 26.1951 64.125 38 64.125C49.8049 64.125 59.375 54.5549 59.375 42.75C59.375 40.2479 58.9226 37.8563 58.1329 35.625H73.625V66.5C73.625 67.811 72.561 68.875 71.25 68.875Z"
+                                                fill="#6B7780" />
+                                            <path
+                                                d="M38 35.625C41.9342 35.625 45.125 38.8158 45.125 42.75C45.125 43.4067 45.6558 43.9375 46.3125 43.9375C46.9692 43.9375 47.5 43.4067 47.5 42.75C47.5 37.5036 43.2464 33.25 38 33.25C37.3433 33.25 36.8125 33.7808 36.8125 34.4375C36.8125 35.0942 37.3433 35.625 38 35.625Z"
+                                                fill="#6B7780" />
+                                            <path
+                                                d="M38 23.75C27.5061 23.75 19 32.2561 19 42.75C19 53.2451 27.5061 61.75 38 61.75C48.4939 61.75 57 53.2451 57 42.75C57 32.2561 48.4939 23.75 38 23.75ZM38 59.375C28.8182 59.375 21.375 51.9317 21.375 42.75C21.375 33.5682 28.8182 26.125 38 26.125C47.1817 26.125 54.625 33.5682 54.625 42.75C54.625 51.9317 47.1817 59.375 38 59.375Z"
+                                                fill="white" />
+                                            <path opacity="0.2"
+                                                d="M4.75 16.625C4.75 16.625 14.25 16.625 15.4375 16.625C16.625 16.625 17.8446 15.8971 18.6521 15.0896C19.4596 14.2821 24.9233 8.81839 25.7581 7.98358C26.5929 7.14876 27.9062 7.12501 27.9062 7.12501H48.0938C48.0938 7.12501 49.3691 7.11076 50.2692 8.01089C51.1694 8.91101 56.4621 14.2037 57.3479 15.0896C58.2338 15.9755 59.375 16.625 60.5625 16.625C61.75 16.625 71.25 16.625 71.25 16.625C72.561 16.625 73.625 17.689 73.625 19V33.25H57.1271C53.6275 26.2176 46.3873 21.375 38 21.375C29.6127 21.375 22.3725 26.2176 18.8729 33.25H2.375V19C2.375 17.689 3.439 16.625 4.75 16.625Z"
+                                                fill="#231F20" />
+                                            <path
+                                                d="M65.3125 28.5C67.2802 28.5 68.875 26.904 68.875 24.9375C68.875 22.971 67.2802 21.375 65.3125 21.375C63.3448 21.375 61.75 22.971 61.75 24.9375C61.75 26.904 63.3448 28.5 65.3125 28.5ZM65.3125 23.75C65.9692 23.75 66.5 24.2808 66.5 24.9375C66.5 25.5942 65.9692 26.125 65.3125 26.125C64.6558 26.125 64.125 25.5942 64.125 24.9375C64.125 24.2808 64.6558 23.75 65.3125 23.75Z"
+                                                fill="#6B7780" />
+                                            <path
+                                                d="M65.3125 26.125C65.9683 26.125 66.5 25.5933 66.5 24.9375C66.5 24.2817 65.9683 23.75 65.3125 23.75C64.6567 23.75 64.125 24.2817 64.125 24.9375C64.125 25.5933 64.6567 26.125 65.3125 26.125Z"
+                                                fill="#F2FF00" />
+                                        </svg>
+                                        <span id="file-name"
+                                            class="text-black border-2 border-[#585858] p-6 rounded-[10px]">Upload
+                                            Photo from
+                                            device</span>
+                                    </label>
+                                    <input type="file" id="photo" class="hidden" accept="image/*"
+                                        onchange="document.getElementById('file-name').textContent = this.files[0].name">
+                                </div>
+
+                                <i class="fa-solid fa-asterisk text-[#F2FF00]"></i>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-between gap-4 pe-6">
+                            <button type="button" onclick="prevStep(3)"
+                                class="text-center bg-transparent text-white border border-white py-1 flex-1 ">Back</button>
+                            <button type="button" onclick="nextStep(5)"
+                                class=" text-center bg-[#F2FF00] text-black py-1 flex-1">Next
+                                Step</button>
+
+                        </div>
+                    </form>
+                </div>
+
+                <div id="step-5" class="step hidden">
+                    <h2 class="text-2xl font-bold mb-6 text-white">Subscribe</h2>
+                    <form>
+                        <div class="mb-4">
+                            <label for="firstName" class="block text-sm font-medium text-white">Set Password</label>
+                            <div class="flex items-center gap-2">
+                                <input type="password" id="password"
+                                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
+                                    placeholder="Enter Password">
+                                <i class="fa-solid fa-asterisk text-[#F2FF00]"></i>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <div class="flex items-center gap-2">
+                                <input type="password" id="confirmPassword"
+                                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
+                                    placeholder="Confirm Password">
+                                <i class="fa-solid fa-asterisk text-[#F2FF00]"></i>
+                            </div>
+
+                        </div>
+
+                        <div class="flex flex-col gap-2 mb-8 ">
+                            <p class="text-white font-bold">Password must contains:</p>
+                            <div class="flex flex-col gap-2">
+                                <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-check text-green-400"></i>
+                                    <p class="text-white">Password must contain special character.</p>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-check text-green-400"></i>
+                                    <p class="text-white">Password must has more than 8 characters.</p>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-xmark text-[#FF0000]"></i>
+                                    <p class="text-white">Password must not used before</p>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between gap-4 pe-6">
+                            <button type="button" onclick="prevStep(4)"
+                                class="text-center bg-transparent text-white border border-white py-1 flex-1 ">Back</button>
+                            <button type="button" onclick="submitForm('register')"
+                                class=" text-center bg-[#F2FF00] text-black py-1 flex-1">Finish & Save</button>
+
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
 
@@ -32,17 +352,17 @@
                 <!-- Left Navigation -->
                 <button class="lg:hidden py-2"><i class="fa-solid fa-bars text-white py-4 text-[1.5rem]"></i></button>
                 <div class="hidden lg:flex flex-1 items-center  justify-between py-4 text-white">
-                    <a href="#" class="relative group">
+                    <a href="#home" class="relative group">
                         <span class="block py-2 border-b-2 border-green-400">Home</span>
                         <span
                             class="absolute bottom-0 left-0 w-full h-0.5 bg-green-400 transform scale-x-100 group-hover:scale-x-100 transition-transform"></span>
                     </a>
-                    <a href="#" class="relative group">
+                    <a href="#about-us" class="relative group">
                         <span class="block py-2">About the Union</span>
                         <span
                             class="absolute bottom-0 left-0 w-full h-0.5 bg-green-400 transform scale-x-0 group-hover:scale-x-100 transition-transform"></span>
                     </a>
-                    <a href="#" class="relative group">
+                    <a href="#activities" class="relative group">
                         <span class="block py-2">Activities</span>
                         <span
                             class="absolute bottom-0 left-0 w-full h-0.5 bg-green-400 transform scale-x-0 group-hover:scale-x-100 transition-transform"></span>
@@ -87,7 +407,7 @@
             <div class="flex flex-col-reverse lg:flex-row  justify-between gap-12 items-center  z-10 lg:mt-8">
                 <!-- Left Content -->
                 <div class="lg:flex w-full lg:w-[35%] flex-col lg:ps-[5%] text-white space-y-8">
-                    <h1 class="text-[3rem] md:text-[4rem] font-bold leading-[70px]">
+                    <h1 class=" text-[2.5rem]  md:text-[4rem] font-bold leading-[50px] sm:leading-[80px]">
                         Empowering <br />
                         Future Tech <br />
                         Leaders
@@ -119,7 +439,7 @@
             </div>
 
             <!-- Bottom Text -->
-            <div class="container mx-auto mt-32 relative z-10 flex justify-center ">
+            <div class=" mx-auto mt-32 relative z-10 flex justify-center ">
                 <div
                     class="bg-gradient-to-r from-[#205392] to-[#712B8F] backdrop-blur-lg  p-8 max-w-5xl w-full mx-8 mb-24">
                     <p class="text-white/90 text-lg leading-relaxed">
@@ -135,10 +455,39 @@
 
                         </button>
                     </div>
+                    <div class="absolute bottom-20 right-0 w-[20px] h-14 bg-[#FF00BB]"></div>
+                </div>
+            </div>
+
+            <!-- Login/Register Form (Hidden by Default) -->
+            <div id="form-container"
+                class="fixed  top-0 left-0 right-0 p-[10%] h-[100vh] bg-[#324E95] opacity-95 z-[60] shadow-lg transform -translate-y-full transition-transform duration-500">
+                <div class="relative max-w-md mx-auto">
+                    <button onclick="hideForm('login')"
+                        class="absolute top-[-50px] right-[-250px] text-white text-[2rem] hover:text-white">
+                        <i class="fa-solid fa-times"></i>
+                    </button>
+                    <h2 class="text-2xl text-white font-bold mb-6">Login</h2>
+                    <form onsubmit="submitForm('login')">
+                        <div class="mb-4">
+                            <!-- <label for="email" class="block text-sm font-medium text-gray-700">Email</label> -->
+                            <input type="email" id="LoginEmail" required
+                                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
+                                placeholder="Add your Username or Email">
+
+                        </div>
+                        <div class="mb-4">
+                            <!-- <label for="password" class="block text-sm font-medium text-gray-700">Password</label> -->
+                            <input type="password" id="LoginPassword" required
+                                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
+                                placeholder="Add your Password">
+                        </div>
+                        <button type="submit" class="w-full bg-[#F2FF00] text-black py-2 px-4 ">Submit</button>
+                    </form>
                 </div>
             </div>
     </section>
-    <section>
+    <section id="about-us">
         <div class="relative flex flex-col mx-[6%] items-center justify-center ">
             <div class="absolute top-[-80px] left-1/2 transform -translate-x-1/2 h-[500px] ">
                 <img src="./images/Group3.png" alt="Robot" class="w-full h-full ">
@@ -152,7 +501,7 @@
             <div
                 class="absolute top-[300px] left-0 lg:left-[25%] transform  bg-[#F1FE05] w-[40px] h-[40px] rotate-[-30deg]">
             </div>
-            <div class="w-full mt-[470px] mb-[600px] md:mb-[300px]">
+            <div class="w-full mt-[470px] mb-[400px] md:mb-[300px]">
                 <h2 class="text-[#0A2641] text-[3rem] mb-4">About us</h2>
                 <p class="text-[#0A2641] text-[1.5rem]">
                     The federation is a pioneering platform aimed at empowering youth in advanced technological fields
@@ -190,7 +539,7 @@
 
 
     <!-- Activities Section -->
-    <section class="pt-[200px] bg-[#A4DEFF9E] main-activities pb-12" id="activities">
+    <section id="activities" class="pt-[200px] bg-[#A4DEFF9E] main-activities pb-12" id="activities">
         <div class="mx-[6%] ">
 
             <h2 class="text-[#0A2641] text-[3rem] mb-4">Main Activities</h2>
@@ -251,11 +600,11 @@
                         </div>
                     </div>
                     <div
-                        class="relative bg-[url('./images/Rectangle-18.png')] bg-cover bg-center bg-no-repeat flex-1 min-w-[300px] h-[450px]">
-                        <img src="./images/Mask group(5).png" alt="arrow-right"
-                            class="absolute bottom-0 right-0 w-full h-auto object-cover z-0">
+                        class="relative bg-[url('./images/Maskgroup(4).png')] bg-cover bg-center bg-no-repeat flex-1 min-w-[300px] h-[450px]">
+                        <!-- <img src="./images/Mask group(5).png" alt="arrow-right"
+                        class="absolute bottom-0 right-0 w-full h-auto object-cover z-0"> -->
                         <div class="absolute inset-0 z-10 flex flex-col justify-start ps-[10%] pe-[25%] py-[20%]">
-                            <h3 class="text-[#361212] text-[2rem] mb-4">RC Sports</h3>
+                            <h3 class="text-[#361212] text-[2rem] mb-4">Unmanned Vehicles</h3>
                             <p class="text-[#361212] text-[1rem] w-[100%] h-24 mb-4">
                                 Remote-controlled aircraft and car competitions
                             </p>
@@ -287,7 +636,7 @@
         <div class="container mx-auto px-2 sm:px-4 max-w-7xl">
             <!-- Credit Card Image -->
             <div class="absolute -top-10 sm:-top-16 md:-top-32 left-1/2 transform -translate-x-1/2">
-                <img src="images/credit-card.png" alt="Credit-card-photo"
+                <img src="images/credit-card-removebg-preview.png" alt="Credit-card-photo"
                     class="w-[200px] sm:w-[300px] md:w-[500px] transform rotate-[-6deg] z-50 relative">
             </div>
 
@@ -458,10 +807,10 @@
     <!-- For the Videos button -->
 
 
+    <!-- </div>
     </div>
     </div>
-    </div>
-    </section>
+    </section> -->
     <!-- Footer Section -->
     <footer class="bg-[#205392] text-white py-6 px-4 md:px-8 lg:px-20">
 
@@ -481,8 +830,8 @@
 
                 <!-- Navigation Links - Column 2 -->
                 <div class="flex flex-col space-y-4">
-                    <a href="#" onclick="showNewsPopup(); return false;" class="block hover:text-gray-300">News</a>
-                    <a href="#" onclick="showRulesPopup(); return false;" class="block hover:text-gray-300">Rules &
+                    <a href="#" onclick="showNewsPopup();" class="block hover:text-gray-300">News</a>
+                    <a href="#" onclick="showRulesPopup();" class="block hover:text-gray-300">Rules &
                         Regulations</a>
                     <a href="#" class="block hover:text-gray-300">Terms & Conditions</a>
                     <a href="#" class="block hover:text-gray-300">Privacy Policy</a>
@@ -527,3 +876,158 @@
     </footer>
 
     <script src="script.js"></script>
+    <!-- <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
+
+        async function initFirebase() {
+            try {
+                const firebaseConfig = {
+                    apiKey: "AIzaSyD3K5SjhGah5Kg6FPCUCNC1swuRoXIFri4",
+                    authDomain: "errcsf-6c6f8.firebaseapp.com",
+                    projectId: "errcsf-6c6f8",
+                    storageBucket: "errcsf-6c6f8.appspot.com",
+                    messagingSenderId: "886725785884",
+                    appId: "1:886725785884:web:949360db65975e564b22d9",
+                    measurementId: "G-HBJZ34YW9Q"
+                };
+
+                console.log("Initializing Firebase...");
+                const app = initializeApp(firebaseConfig);
+                const auth = getAuth(app);
+                const db = getFirestore(app);
+
+                console.log("Firebase initialized successfully!");
+
+                // Store globally for debugging
+                window.firebaseAuth = auth;
+                window.firebaseDB = db;
+            } catch (error) {
+                console.error("Error initializing Firebase:", error);
+            }
+        }
+
+        // Initialize Firebase
+        initFirebase();
+    </script> -->
+
+    <!-- <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
+
+        async function initFirebase() {
+            try {
+                const firebaseConfig = {
+                    apiKey: "AIzaSyD3K5SjhGah5Kg6FPCUCNC1swuRoXIFri4",
+                    authDomain: "errcsf-6c6f8.firebaseapp.com",
+                    projectId: "errcsf-6c6f8",
+                    storageBucket: "errcsf-6c6f8.appspot.com",
+                    messagingSenderId: "886725785884",
+                    appId: "1:886725785884:web:949360db65975e564b22d9",
+                    measurementId: "G-HBJZ34YW9Q"
+                };
+
+                console.log("Initializing Firebase...");
+                const app = initializeApp(firebaseConfig);
+                const auth = getAuth(app);
+                const db = getFirestore(app);
+
+                console.log("Firebase initialized successfully!");
+
+                // Store globally for debugging
+                window.firebaseAuth = auth;
+                window.firebaseDB = db;
+            } catch (error) {
+                console.error("Error initializing Firebase:", error);
+            }
+        }
+
+        // Initialize Firebase
+        initFirebase();
+
+        async function submitForm(type) {
+            if (type === 'register') {
+                const password = document.getElementById('password').value;
+                const confirmPassword = document.getElementById('confirmPassword').value;
+
+                // Check if passwords match
+                if (password !== confirmPassword) {
+                    alert('Passwords do not match!');
+                    return;
+                }
+
+                // Check password length
+                if (password.length < 8) {
+                    alert('Password must be at least 8 characters long!');
+                    return;
+                }
+
+                // Check for special character using regex
+                const specialCharRegex = /[!@#$%^&*(),.?":{}|<>]/;
+                if (!specialCharRegex.test(password)) {
+                    alert('Password must contain at least one special character!');
+                    return;
+                }
+
+                // Store password if all validation passes
+                formData.password = password;
+
+                console.log('Form Data:', formData);
+
+                // Clear form data by setting individual properties to null
+                Object.keys(formData).forEach(key => {
+                    formData[key] = null;
+                });
+
+                try {
+                    // Create user with email and password
+                    const userCredential = await createUserWithEmailAndPassword(window.firebaseAuth, email, password);
+                    const user = userCredential.user;
+
+                    // Save user profile data to Firestore
+                    await addDoc(collection(window.firebaseDB, 'profile'), {
+                        uid: user.uid,
+                        firstName: formData.firstName,
+                        middleName: formData.middleName,
+                        lastName: formData.lastName,
+                        dateOfBirth: formData.dateOfBirth,
+                        gender: formData.gender,
+                        phoneNumber: formData.phoneNumber,
+                        email: formData.email,
+                        emergencyPhoneNumber: formData.emergencyPhoneNumber,
+                        country: formData.country,
+                        nationality: formData.nationality,
+                        address: formData.address,
+                        createdAt: new Date()
+                    });
+
+                    // Clear form data by setting individual properties to null
+                    Object.keys(formData).forEach(key => {
+                        formData[key] = null;
+                    });
+
+                    alert("Registration successful!");
+                    hideForm('register'); // Hide the form after successful registration
+                } catch (error) {
+                    console.error("Error during registration:", error);
+                    alert(error.message);
+                }
+            } else if (type === 'login') {
+                const email = document.getElementById('LoginEmail').value;
+                const password = document.getElementById('LoginPassword').value;
+
+                alert('Login successful!');
+
+                formData.email = email;
+                formData.password = password;
+
+                console.log('Form Data:', formData);
+            }
+        }
+
+        // Attach event listener to the button
+        document.getElementById('registerButton').addEventListener('click', () => submitForm('register'));
+        document.getElementById('loginButton').addEventListener('click', () => submitForm('login'));
+    </script> -->

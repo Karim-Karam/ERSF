@@ -29,7 +29,7 @@ html {
     border: none;
     padding: 10px;
     cursor: pointer;
-    z-index: 100;
+    z-index: 5;
 }
 
 .slider-prev {
@@ -66,4 +66,41 @@ html {
     left: -20px;
     border-top-right-radius: 25px;
     box-shadow: 6px -25px 0 0 white; 
+}
+
+#form-container {
+    transition: transform 0.5s ease-in-out;
+}
+
+#form-container.show {
+    transform: translateY(0);
+}
+
+#register-form-container {
+    transition: transform 0.5s ease-in-out;
+}
+
+#register-form-container.show {
+    transform: translateY(0);
+}
+
+.step {
+    display: none;
+}
+
+.step.active {
+    display: block;
+}
+
+::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color:white;
+}
+
+::-webkit-scrollbar-track {
+    background: #0A264199
 }
